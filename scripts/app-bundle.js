@@ -37,9 +37,9 @@ define('queen',["require", "exports"], function (require, exports) {
             }
             this.nextQueen.Solve();
             while (this.nextQueen.CanPositionBeAttacked(this.Row, this.Column) ||
-                this.Row > 4) {
+                this.Row > Queen.BoardSize) {
                 this.MoveNext();
-                if (this.Row > 4) {
+                if (this.Row > Queen.BoardSize) {
                     this.Row = 1;
                     this.nextQueen.MoveNext();
                     this.nextQueen.Solve();
@@ -58,14 +58,16 @@ define('app',["require", "exports", "./queen"], function (require, exports, quee
         function App() {
             this.message = '8 Queens';
             this.queens = [];
+            this.boardSize = 5;
         }
         App.prototype.Solve = function () {
-            this.queens = new Array(4);
+            queen_1.Queen.BoardSize = this.boardSize;
+            this.queens = new Array(this.boardSize);
             this.queens[0] = new queen_1.Queen(null, 1);
-            this.queens[1] = new queen_1.Queen(this.queens[0], 2);
-            this.queens[2] = new queen_1.Queen(this.queens[1], 3);
-            this.queens[3] = new queen_1.Queen(this.queens[2], 4);
-            this.queens[3].Solve();
+            for (var i = 1; i < this.boardSize; i++) {
+                this.queens[i] = new queen_1.Queen(this.queens[i - 1], i + 1);
+            }
+            this.queens[this.boardSize - 1].Solve();
         };
         return App;
     }());
@@ -110,5 +112,5 @@ define('resources/index',["require", "exports"], function (require, exports) {
     exports.configure = configure;
 });
 
-define('text!app.html', ['module'], function(module) { module.exports = "<template><h1>${message}</h1><button type=\"button\" click.delegate=\"Solve()\">Solve</button><p repeat.for=\"q of queens\">${q.Column}, ${q.Row}</p></template>"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template><h1>${message}</h1><input type=\"text\" value.bind=\"boardSize\"> <button type=\"button\" click.delegate=\"Solve()\">Solve</button><p repeat.for=\"q of queens\">${q.Column}, ${q.Row}</p></template>"; });
 //# sourceMappingURL=app-bundle.js.map

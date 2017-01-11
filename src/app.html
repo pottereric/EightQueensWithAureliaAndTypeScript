@@ -1,5 +1,6 @@
 <template>
   <h1>${message}</h1>
+  <input type="text" value.bind="boardSize">
   <button type="button" click.delegate="Solve()">Solve</button>
   <p repeat.for="q of queens">${q.Column}, ${q.Row}</p>
 </template>

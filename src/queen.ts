@@ -5,6 +5,8 @@ export class Queen {
 
     public Row : number;
 
+    public static BoardSize : number;
+
     public MoveNext(){
         this.Row++;
     }
@@ -42,10 +44,10 @@ export class Queen {
         this.nextQueen.Solve();
 
         while(this.nextQueen.CanPositionBeAttacked(this.Row, this.Column) ||
-              this.Row > 4){
+              this.Row > Queen.BoardSize){
             this.MoveNext();
 
-            if(this.Row > 4){
+            if(this.Row > Queen.BoardSize){
                 this.Row = 1;
                 this.nextQueen.MoveNext();
                 this.nextQueen.Solve();

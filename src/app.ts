@@ -5,18 +5,23 @@ export class App {
   queens = []; 
   lastRow: number;
   lastColumn: number;
+  boardSize: number;
 
   constructor ( ) {
+    this.boardSize = 5;
   }
 
-  public Solve() {
-    this. queens = new Array<Queen>(4);
+  public Solve() {    
+
+    Queen.BoardSize = this.boardSize;
+
+    this.queens = new Array<Queen>(this.boardSize);
 
     this.queens[0] = new Queen(null, 1);
-    this.queens[1] = new Queen(this.queens[0], 2);
-    this.queens[2] = new Queen(this.queens[1], 3);
-    this.queens[3] = new Queen(this.queens[2], 4);
+    for(var i = 1; i < this.boardSize; i++){
+      this.queens[i] = new Queen(this.queens[i-1], i + 1);
+    }
       
-    this.queens[3].Solve();
+    this.queens[this.boardSize - 1].Solve();
   }
 }

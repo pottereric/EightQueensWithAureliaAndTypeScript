@@ -59,6 +59,7 @@ describe('a two queen system', () => {
 });
 
 describe('a three queen system (3 x 4)', () => {
+    Queen.BoardSize = 4;
     var firstQueen = new Queen(null, 1);
     var secondQueen = new Queen(firstQueen, 2);
     var thirdQueen = new Queen(secondQueen, 3);
@@ -80,6 +81,8 @@ describe('a three queen system (3 x 4)', () => {
 });
 
 describe('a four queen system', () => {
+    Queen.BoardSize = 4;
+
     var firstQueen = new Queen(null, 1);
     var secondQueen = new Queen(firstQueen, 2);
     var thirdQueen = new Queen(secondQueen, 3);
@@ -101,6 +104,23 @@ describe('a four queen system', () => {
 
     it('can solve for the fourth queen', () => {
         expect(fourthQueen.Row).toBe(3);
+    })
+
+});
+
+describe('a five queen system', () => {
+    Queen.BoardSize = 5;
+
+    var firstQueen = new Queen(null, 1);
+    var secondQueen = new Queen(firstQueen, 2);
+    var thirdQueen = new Queen(secondQueen, 3);
+    var fourthQueen = new Queen(thirdQueen, 4);
+    var fifthQueen = new Queen(fourthQueen, 5);
+
+    fifthQueen.Solve();
+
+    it('can solve for the fifth queen', () => {
+        expect(fifthQueen.Row).toBe(4);
     })
 
 });
