@@ -2,5 +2,14 @@
   <h1>${message}</h1>
   <input type="text" value.bind="boardSize">
   <button type="button" click.delegate="Solve()">Solve</button>
-  <p repeat.for="q of queens">${q.Column}, ${q.Row}</p>
+  <span repeat.for="q of queens">${q.Column}, ${q.Row} -</span>
+
+  <svg width="1000" height="1000" >
+    	<circle repeat.for="q of queens" 
+                cx.bind="q.Column * 40" cy.bind="q.Row * 40" 
+                r.bind="20"
+			          stroke="blue"
+                style="fill: blue" >
+        </circle>
+      </svg>
 </template>

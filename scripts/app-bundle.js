@@ -112,5 +112,5 @@ define('resources/index',["require", "exports"], function (require, exports) {
     exports.configure = configure;
 });
 
-define('text!app.html', ['module'], function(module) { module.exports = "<template><h1>${message}</h1><input type=\"text\" value.bind=\"boardSize\"> <button type=\"button\" click.delegate=\"Solve()\">Solve</button><p repeat.for=\"q of queens\">${q.Column}, ${q.Row}</p></template>"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template><h1>${message}</h1><input type=\"text\" value.bind=\"boardSize\"> <button type=\"button\" click.delegate=\"Solve()\">Solve</button> <span repeat.for=\"q of queens\">${q.Column}, ${q.Row} -</span> <svg width=\"1000\" height=\"1000\"><circle repeat.for=\"q of queens\" cx.bind=\"q.Column * 40\" cy.bind=\"q.Row * 40\" r.bind=\"20\" stroke=\"blue\" style=\"fill:#00f\"></circle></svg></template>"; });
 //# sourceMappingURL=app-bundle.js.map
