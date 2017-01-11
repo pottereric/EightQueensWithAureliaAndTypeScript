@@ -1,3 +1,5 @@
 <template>
   <h1>${message}</h1>
+
+  <p repeat.for="q of queens">${q.Column}, ${q.Row}</p>
 </template>
