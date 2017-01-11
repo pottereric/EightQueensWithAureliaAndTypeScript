@@ -57,13 +57,16 @@ define('app',["require", "exports", "./queen"], function (require, exports, quee
     var App = (function () {
         function App() {
             this.message = '8 Queens';
+            this.queens = [];
+        }
+        App.prototype.Solve = function () {
             this.queens = new Array(4);
             this.queens[0] = new queen_1.Queen(null, 1);
             this.queens[1] = new queen_1.Queen(this.queens[0], 2);
             this.queens[2] = new queen_1.Queen(this.queens[1], 3);
             this.queens[3] = new queen_1.Queen(this.queens[2], 4);
             this.queens[3].Solve();
-        }
+        };
         return App;
     }());
     exports.App = App;
@@ -107,5 +110,5 @@ define('resources/index',["require", "exports"], function (require, exports) {
     exports.configure = configure;
 });
 
-define('text!app.html', ['module'], function(module) { module.exports = "<template><h1>${message}</h1><div>${lastColumn},${lastRow}</div><p repeat.for=\"q of queens\">${q.Column}, ${q.Row}</p></template>"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template><h1>${message}</h1><button type=\"button\" click.delegate=\"Solve()\">Solve</button><p repeat.for=\"q of queens\">${q.Column}, ${q.Row}</p></template>"; });
 //# sourceMappingURL=app-bundle.js.map

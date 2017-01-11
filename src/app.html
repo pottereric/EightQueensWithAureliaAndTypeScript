@@ -1,5 +1,5 @@
 <template>
   <h1>${message}</h1>
-
+  <button type="button" click.delegate="Solve()">Solve</button>
   <p repeat.for="q of queens">${q.Column}, ${q.Row}</p>
 </template>
