@@ -1,15 +1,23 @@
 <template>
   <h1>${message}</h1>
-  <input type="text" value.bind="boardSize">
-  <button type="button" click.delegate="Solve()">Solve</button>
-  <span repeat.for="q of queens">${q.Column}, ${q.Row} -</span>
+  <div>
+    <input type="text" value.bind="boardSize">
+    <button type="button" click.delegate="Solve()">Solve</button>
+    <span repeat.for="q of queens">${q.Column},${q.Row}  -  </span>
+  </div>
 
   <svg width="1000" height="1000" >
-    	<circle repeat.for="q of queens" 
-                cx.bind="q.Column * 40" cy.bind="q.Row * 40" 
-                r.bind="20"
+      <line x1="0" y1="0" x2="0" y2="${boardSize*40}"style="stroke:lightgray;stroke-width:1" />
+      <line x1="0" y1="0" x2="${boardSize*40}" y2="0"style="stroke:lightgray;stroke-width:1" />
+      <g repeat.for="q of queens" >
+    	  <circle 
+                cx.bind="(q.Column * 40) - 20" cy.bind="(q.Row * 40) -20" 
+                r.bind="16"
 			          stroke="blue"
                 style="fill: blue" >
         </circle>
+        <line x1="${q.Column * 40}" y1="0" x2="${q.Column * 40}" y2="${boardSize*40}"style="stroke:lightgray;stroke-width:1" />
+        <line x1="0" y1="${q.Row * 40}" x2="${boardSize*40}" y2="${q.Row * 40}"style="stroke:lightgray;stroke-width:1" />
+      </g>
       </svg>
 </template>
